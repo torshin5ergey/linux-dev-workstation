@@ -1,0 +1,21 @@
+---
+# https://docs.docker.com/engine/install/ubuntu/
+- name: Create GPG key directory
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+      mode: "0755"
+
+- name: Download Docker GPG key
+  ansible.builtin.get_url:
+    url: "{{ docker_gpg_url }}"
+    dest: "{{ docker_keyring_path }}"
+    mode: "0644"
+
+- name: Add Docker repository
+  ansible.builtin.copy:
+    dest: "{{ docker_source_path }}"
+    content: |
+      deb [arch={{ ansible_architecture }} signed-by={{ docker_keyring_path }}] {{ docker_repo_url }} \
+      {{ ansible_distribution_release }} stable
+    validate: 'apt-validate %s'
