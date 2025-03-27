@@ -1,21 +1,32 @@
 ---
 # https://docs.docker.com/engine/install/ubuntu/
-- name: Create GPG key directory
+- name: Create Docker GPG key directory
   ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
-      mode: "0755"
+    mode: "0755"
 
 - name: Download Docker GPG key
   ansible.builtin.get_url:
-    url: "{{ docker_gpg_url }}"
-    dest: "{{ docker_keyring_path }}"
+    url: "{{ var_docker_gpg_url }}"
+    dest: "{{ var_docker_keyring_path }}"
     mode: "0644"
 
 - name: Add Docker repository
   ansible.builtin.copy:
-    dest: "{{ docker_source_path }}"
+    dest: "{{ var_docker_source_path }}"
     content: |
-      deb [arch={{ ansible_architecture }} signed-by={{ docker_keyring_path }}] {{ docker_repo_url }} \
+      deb [arch={{ ansible_architecture }} signed-by={{ var_docker_keyring_path }}] {{ var_docker_repo_url }} \
       {{ ansible_distribution_release }} stable
-    validate: 'apt-validate %s'
+    mode: "0644"
+
+- name: Install Docker from apt
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+    update_cache: true

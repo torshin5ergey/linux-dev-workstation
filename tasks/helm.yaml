@@ -1,0 +1,29 @@
+---
+# https://helm.sh/docs/intro/install/
+- name: Create Helm GPG key directory
+  ansible.builtin.file:
+    path: /usr/share/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Download Helm GPG key
+  ansible.builtin.get_url:
+    url: "{{ var_helm_gpg_url }}"
+    dest: "{{ var_helm_keyring_path }}"
+    mode: "0644"
+  register: gpg_key
+  changed_when: "'saved' in gpg_key.msg"
+
+- name: Add Helm repository
+  ansible.builtin.copy:
+    dest: "{{ var_helm_source_path }}"
+    content: |
+      deb [arch={{ ansible_architecture }} signed-by={{ var_helm_keyring_path }}] {{ var_helm_repo_url }} \
+      all main
+    mode: "0644"
+
+- name: Install Helm from apt
+  ansible.builtin.apt:
+    name: helm
+    state: present
+    update_cache: true
