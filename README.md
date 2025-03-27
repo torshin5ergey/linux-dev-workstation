@@ -3,7 +3,7 @@
 Setup and configure Linux for Dev/DevOps via Ansible playbook
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/torshin5ergey/linux-dev-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/torshin5ergey/linux-dev-workstation/actions)
+[![CI](https://github.com/torshin5ergey/linux-dev-workstation/actions/workflows/ci.yml/badge.svg)](https://github.com/torshin5ergey/linux-dev-workstation/actions)
 
 ## Quickstart
 
