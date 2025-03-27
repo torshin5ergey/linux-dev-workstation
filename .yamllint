@@ -6,4 +6,4 @@ rules:
     max: 180
     level: warning
   comments:
-    indent: false
+    min-spaces-from-content: 1
