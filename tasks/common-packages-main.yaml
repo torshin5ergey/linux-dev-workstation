@@ -1,4 +1,8 @@
 ---
-- name: Install common packages
-  ansible.builtin.include_tasks: common-packages-tasks.yaml
-  loop: "{{ var_common_packages }}"
+- name: Install apt common packages
+  ansible.builtin.include_tasks: apt-packages-tasks.yaml
+  loop: "{{ var_apt_packages }}"
+
+- name: Install snap common packages
+  ansible.builtin.include_tasks: snap-packages-tasks.yaml
+  loop: "{{ var_snap_packages }}"

@@ -1,0 +1,10 @@
+---
+- name: Print current installation package
+  ansible.builtin.debug:
+    msg: "Installing package {{ item }}"
+
+- name: Install apt package
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+    state: present

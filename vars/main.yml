@@ -1,12 +1,16 @@
 ---
-# Common packages
-var_common_packages:
+# apt common packages
+var_apt_packages:
   - git
   - curl
   - ca-certificates
   - apt-transport-https
   - gpg
   - zsh #
+
+# snap common packages
+var_snap_packages:
+  - yq
 
 # Docker
 var_docker_gpg_url: "https://download.docker.com/linux/ubuntu/gpg"

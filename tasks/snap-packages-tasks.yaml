@@ -3,8 +3,7 @@
   ansible.builtin.debug:
     msg: "Installing package {{ item }}"
 
-- name: Install common package
-  ansible.builtin.apt:
+- name: Install snap package
+  community.general.snap:
     name: "{{ item }}"
-    update_cache: true
     state: present
