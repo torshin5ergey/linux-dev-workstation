@@ -9,6 +9,7 @@ var_apt_packages:
   - gpg
   - zsh #
   - gnome-sushi # Quick Look
+  - gcolor3 # Color picker
 
 # snap common packages
 var_snap_packages:
