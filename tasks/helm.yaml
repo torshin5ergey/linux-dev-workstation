@@ -1,6 +1,6 @@
 ---
 # https://helm.sh/docs/intro/install/
-- name: Create Helm GPG key directory
+- name: Create GPG key directory
   ansible.builtin.file:
     path: /usr/share/keyrings
     state: directory

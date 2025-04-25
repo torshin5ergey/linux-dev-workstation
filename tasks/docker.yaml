@@ -1,6 +1,6 @@
 ---
 # https://docs.docker.com/engine/install/ubuntu/
-- name: Create Docker GPG key directory
+- name: Create GPG key directory
   ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
