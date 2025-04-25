@@ -1,0 +1,27 @@
+---
+# https://code.visualstudio.com/docs/setup/linux
+- name: Create keyrings directory
+  ansible.builtin.file:
+    src: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Download Microsoft GPG key
+  ansible.builtin.get_url:
+    url: "{{ var_vscode_gpg_url }}"
+    dest: "{{ var_vscode_keyring_path }}"
+    mode: "0644"
+
+- name: Add Misrosoft repository
+  ansible.builtin.copy:
+    dest: "{{ var_vscode_source_path }}"
+    content: |
+      deb [arch=amd64,arm64,armhf signed-by={{ var_vscode_keyring_path }}] {{ var_vscode_repo_url }} stable main
+    mode: "0644"
+
+- name: Install VS Code from apt
+  ansible.builtin.apt:
+    name:
+      - code
+    state: present
+    update_cache: true

@@ -29,4 +29,6 @@ var_helm_keyring_path: "/usr/share/keyrings/helm.gpg"
 var_helm_source_path: "/etc/apt/sources.list.d/helm-stable-debian.list"
 
 # VS Code
-var_vscode_gpg_url: ""
+var_vscode_gpg_url: "https://packages.microsoft.com/keys/microsoft.asc"
+var_vscode_keyring_path: "/etc/apt/keyrings/packages.microsoft.gpg"
+var_vscode_source_path: "/etc/apt/sources.list.d/vscode.list"

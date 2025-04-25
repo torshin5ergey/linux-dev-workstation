@@ -10,6 +10,10 @@
       ansible.builtin.include_tasks: tasks/common-packages-main.yaml
       tags: common
 
+    - name: Install VS Code
+      ansible.builtin.include_tasks: tasks/vscode.yaml
+      tags: vscode
+
     - name: Install Docker
       ansible.builtin.include_tasks: tasks/docker.yaml
       tags: docker
