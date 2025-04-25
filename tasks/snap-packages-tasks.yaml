@@ -5,5 +5,6 @@
 
 - name: Install snap package
   community.general.snap:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
+    classic: "{{ item.classic | default(false) }}"
