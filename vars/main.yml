@@ -7,6 +7,8 @@ var_apt_packages:
   - ca-certificates
   - apt-transport-https
   - gpg
+  - gnupg
+  - software-properties-common
   - zsh #
   - gnome-sushi # Quick Look
   - gcolor3 # Color picker
@@ -17,19 +19,7 @@ var_snap_packages:
   - name: task
     classic: true
 
-# Docker
-var_docker_gpg_url: "https://download.docker.com/linux/ubuntu/gpg"
-var_docker_repo_url: "https://download.docker.com/linux/ubuntu"
-var_docker_keyring_path: "/etc/apt/keyrings/docker.asc"
-var_docker_source_path: "/etc/apt/sources.list.d/docker.list"
-
-# Helm
-var_helm_gpg_url: "https://baltocdn.com/helm/signing.asc"
-var_helm_repo_url: "https://baltocdn.com/helm/stable/debian/"
-var_helm_keyring_path: "/usr/share/keyrings/helm.gpg"
-var_helm_source_path: "/etc/apt/sources.list.d/helm-stable-debian.list"
-
-# VS Code
-var_vscode_gpg_url: "https://packages.microsoft.com/keys/microsoft.asc"
-var_vscode_keyring_path: "/etc/apt/keyrings/packages.microsoft.gpg"
-var_vscode_source_path: "/etc/apt/sources.list.d/vscode.list"
+install_docker: true # Docker
+install_helm: true # Helm
+install_vscode: true # VS Code
+install_terraform: true # Terraform

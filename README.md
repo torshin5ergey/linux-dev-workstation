@@ -5,6 +5,22 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/torshin5ergey/linux-dev-workstation/actions/workflows/ci.yaml/badge.svg)](https://github.com/torshin5ergey/linux-dev-workstation/actions)
 
+## Installation list
+
+- Git
+- ZSH
+- Docker
+- Helm
+- Terraform
+- gnome-sushi
+  *Spacebar for Quick Look*
+- gcolor3
+  *Color picker*
+- yq
+  *YAML, JSON, XML parser*
+- Task
+  *Taskfile*
+
 ## Quickstart
 
 1. Clone repo

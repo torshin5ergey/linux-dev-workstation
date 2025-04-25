@@ -1,0 +1,62 @@
+---
+# https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+- name: Set installation variables
+  ansible.builtin.set_fact:
+    var_hc_gpg_url: "https://apt.releases.hashicorp.com/gpg"
+    var_hc_repo_url: "https://apt.releases.hashicorp.com"
+    var_hc_keyring_path: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
+    var_hc_source_path: "/etc/apt/sources.list.d/hashicorp.list"
+
+- name: Create keyrings directory
+  ansible.builtin.file:
+    path: /usr/share/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Download HashiCorp GPG key
+  ansible.builtin.get_url:
+    url: "{{ var_hc_gpg_url }}"
+    dest: /tmp/hashicorp.gpg
+    mode: "0644"
+
+- name: Import HashiCorp GPG key
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      cat /tmp/hashicorp.gpg | \
+      gpg --dearmor | \
+      tee {{ var_hc_keyring_path }}
+    executable: /bin/bash
+  register: output
+  changed_when: output.rc != 0
+
+- name: Remove temporary key file
+  ansible.builtin.file:
+    path: /tmp/microsoft.asc
+    state: absent
+
+- name: Verify HashiCorp GPG key fingerprint
+  ansible.builtin.command:
+    cmd: |
+      gpg --no-default-keyring
+      --keyring {{ var_hc_keyring_path }}
+      --fingerprint
+  register: gpg_fingerprint
+  changed_when: false
+  failed_when: >
+    hashicorp_gpg_fingerprint not in gpg_fingerprint.stdout
+
+- name: Add HashiCorp repository
+  ansible.builtin.copy:
+    dest: "{{ var_hc_source_path }}"
+    content: |
+      deb [arch={{ ansible_architecture }} signed-by={{ var_hc_keyring_path }}] {{ var_hc_repo_url }} \
+      {{ ansible_distribution_release }} main
+    mode: "0644"
+
+- name: Install Terraform from apt
+  ansible.builtin.apt:
+    name:
+      - terraform
+    state: present
+    update_cache: true

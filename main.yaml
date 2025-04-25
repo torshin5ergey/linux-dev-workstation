@@ -12,12 +12,20 @@
 
     - name: Install VS Code
       ansible.builtin.include_tasks: tasks/vscode.yaml
+      when: install_vscode | bool
       tags: vscode
 
     - name: Install Docker
       ansible.builtin.include_tasks: tasks/docker.yaml
+      when: install_docker | bool
       tags: docker
 
     - name: Install Helm
       ansible.builtin.include_tasks: tasks/helm.yaml
+      when: install_helm | bool
       tags: helm
+
+    - name: Install Terraform
+      ansible.builtin.include_tasks: tasks/terraform.yaml
+      when: install_terraform | bool
+      tags: terraform

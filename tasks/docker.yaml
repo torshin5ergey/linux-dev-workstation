@@ -1,6 +1,13 @@
 ---
 # https://docs.docker.com/engine/install/ubuntu/
-- name: Create keyrings directory
+- name: Set installation variables
+  ansisble.builtin.set_fact:
+    var_docker_gpg_url: "https://download.docker.com/linux/ubuntu/gpg"
+    var_docker_repo_url: "https://download.docker.com/linux/ubuntu"
+    var_docker_keyring_path: "/etc/apt/keyrings/docker.asc"
+    var_docker_source_path: "/etc/apt/sources.list.d/docker.list"
+
+- name: Create Docker GPG key directory
   ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory

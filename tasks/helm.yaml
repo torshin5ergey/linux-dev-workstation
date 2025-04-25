@@ -1,5 +1,12 @@
 ---
 # https://helm.sh/docs/intro/install/
+- name: Set installation variables
+  ansible.builtin.set_fact:
+    var_helm_gpg_url: "https://baltocdn.com/helm/signing.asc"
+    var_helm_repo_url: "https://baltocdn.com/helm/stable/debian/"
+    var_helm_keyring_path: "/usr/share/keyrings/helm.gpg"
+    var_helm_source_path: "/etc/apt/sources.list.d/helm-stable-debian.list"
+
 - name: Create keyrings directory
   ansible.builtin.file:
     path: /usr/share/keyrings

@@ -1,5 +1,12 @@
 ---
 # https://code.visualstudio.com/docs/setup/linux
+- name: Set installation variables
+  ansible.builtin.set_fact:
+    var_ms_gpg_url: "https://packages.microsoft.com/keys/microsoft.asc"
+    var_vscode_repo_url: "https://packages.microsoft.com/repos/code"
+    var_ms_keyring_path: "/etc/apt/keyrings/packages.microsoft.gpg"
+    var_vscode_source_path: "/etc/apt/sources.list.d/vscode.list"
+
 - name: Create keyrings directory
   ansible.builtin.file:
     path: /etc/apt/keyrings
@@ -8,9 +15,25 @@
 
 - name: Download Microsoft GPG key
   ansible.builtin.get_url:
-    url: "{{ var_vscode_gpg_url }}"
-    dest: "{{ var_vscode_keyring_path }}"
+    url: "{{ var_ms_gpg_url }}"
+    dest: /tmp/microsoft.asc
     mode: "0644"
+
+- name: Import Microsoft GPG key
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      cat /tmp/microsoft.asc | \
+      gpg --dearmor | \
+      tee {{ var_ms_keyring_path }}
+    executable: /bin/bash
+  register: output
+  changed_when: output.rc != 0
+
+- name: Remove temporary key file
+  ansible.builtin.file:
+    path: /tmp/microsoft.asc
+    state: absent
 
 - name: Add Misrosoft repository
   ansible.builtin.copy:
