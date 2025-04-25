@@ -3,6 +3,7 @@
 var_apt_packages:
   - git
   - curl
+  - wget
   - ca-certificates
   - apt-transport-https
   - gpg
@@ -11,7 +12,9 @@ var_apt_packages:
 
 # snap common packages
 var_snap_packages:
-  - yq
+  - name: yq
+  - name: task
+    classic: true
 
 # Docker
 var_docker_gpg_url: "https://download.docker.com/linux/ubuntu/gpg"
@@ -24,3 +27,6 @@ var_helm_gpg_url: "https://baltocdn.com/helm/signing.asc"
 var_helm_repo_url: "https://baltocdn.com/helm/stable/debian/"
 var_helm_keyring_path: "/usr/share/keyrings/helm.gpg"
 var_helm_source_path: "/etc/apt/sources.list.d/helm-stable-debian.list"
+
+# VS Code
+var_vscode_gpg_url: ""
