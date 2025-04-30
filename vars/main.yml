@@ -19,7 +19,8 @@ var_snap_packages:
   - name: task
     classic: true
 
-install_docker: true # Docker
-install_helm: true # Helm
-install_vscode: true # VS Code
-install_terraform: true # Terraform
+install_docker: true # Docker via apt
+install_helm: true # Helm via apt
+install_kubectl: true # kubectl via apt
+install_vscode: true # VS Code via apt
+install_terraform: true # Terraform via apt

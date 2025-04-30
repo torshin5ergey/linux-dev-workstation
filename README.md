@@ -10,6 +10,7 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
 - Git
 - ZSH
 - Docker
+- kubectl
 - Helm
 - Terraform
 - gnome-sushi

@@ -20,6 +20,11 @@
       when: install_docker | bool
       tags: docker
 
+    - name: Install kubectl
+      ansible.builtin.include_tasks: tasks/kubectl.yaml
+      when: install_kubectl | bool
+      tags: kubectl
+
     - name: Install Helm
       ansible.builtin.include_tasks: tasks/helm.yaml
       when: install_helm | bool

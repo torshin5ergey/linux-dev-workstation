@@ -1,0 +1,61 @@
+---
+# https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
+- name: Set installation variables
+  ansisble.builtin.set_fact:
+    var_kubectl_gpg_url: "https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key"
+    var_kubectl_keyring_path: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
+    var_kubectl_repo_url: "https://pkgs.k8s.io/core:/stable:/v1.33/deb/"
+    var_kubectl_source_path: "/etc/apt/sources.list.d/kubernetes.list"
+
+- name: Create keyrings directory
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+# - name: Download Kubernetes GPG key
+#   ansible.builtin.get_url:
+#     url: "{{ var_kubectl_gpg_url }}"
+#     dest: /tmp/Release.key
+#     mode: "0644"
+
+# - name: Import Kubernetes GPG key
+#   ansible.builtin.shell:
+#     cmd: |
+#       set -o pipefail
+#       cat /tmp/Release.key | \
+#       gpg --dearmor | \
+#       tee {{ var_kubectl_keyring_path }}
+#     executable: /bin/bash
+#   register: output
+#   changed_when: output.rc != 0
+
+- name: Add Kubernetes GPG key
+  ansible.builtin.apt_key:
+    url: "{{ var_kubectl_gpg_url }}"
+    keyring: "{{ var_kubectl_keyring_path }}"
+    state: present
+
+- name: Set keyring permissions
+  ansible.builtin.file:
+    path: "{{ var_kubectl_keyring_path }}"
+    mode: "0644"
+
+# - name: Remove temporary key file
+#   ansible.builtin.file:
+#     path: /tmp/Release.key
+#     state: absent
+
+- name: Add Kubernetes repository
+  ansible.builtin.copy:
+    dest: "{{ var_kubectl_source_path }}"
+    content: |
+      deb [arch={{ ansible_architecture }} signed-by={{ var_kubectl_keyring_path }}] {{ var_kubectl_repo_url }} /
+    mode: "0644"
+
+- name: Install kubectl from apt
+  ansible.builtin.apt:
+    name:
+      - kubectl
+    state: present
+    update_cache: true
