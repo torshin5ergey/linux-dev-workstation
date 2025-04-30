@@ -1,7 +1,7 @@
 ---
 # https://docs.docker.com/engine/install/ubuntu/
 - name: Set installation variables
-  ansisble.builtin.set_fact:
+  ansible.builtin.set_fact:
     var_docker_gpg_url: "https://download.docker.com/linux/ubuntu/gpg"
     var_docker_repo_url: "https://download.docker.com/linux/ubuntu"
     var_docker_keyring_path: "/etc/apt/keyrings/docker.asc"

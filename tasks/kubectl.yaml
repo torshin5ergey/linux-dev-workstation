@@ -1,7 +1,7 @@
 ---
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
 - name: Set installation variables
-  ansisble.builtin.set_fact:
+  ansible.builtin.set_fact:
     var_kubectl_gpg_url: "https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key"
     var_kubectl_keyring_path: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
     var_kubectl_repo_url: "https://pkgs.k8s.io/core:/stable:/v1.33/deb/"
