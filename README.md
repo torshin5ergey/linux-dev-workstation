@@ -21,6 +21,8 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
   *YAML, JSON, XML parser*
 - Task
   *Taskfile*
+- [Flameshot](https://flameshot.org/)
+  *Screenshots*
 
 ## Quickstart
 
