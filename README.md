@@ -13,6 +13,8 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
 - kubectl
 - Helm
 - Terraform
+- redis-tools
+  *`redis-cli`*
 - gnome-sushi
   *Spacebar for Quick Look*
 - gcolor3
