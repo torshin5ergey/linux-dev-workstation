@@ -25,6 +25,8 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
   *Taskfile*
 - [Flameshot](https://flameshot.org/)
   *Screenshots*
+- VLC
+- OBS Studio
 
 ## Quickstart
 
