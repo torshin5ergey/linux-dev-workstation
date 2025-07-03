@@ -27,6 +27,7 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
   *Screenshots*
 - VLC
 - OBS Studio
+- [CheckInstall](https://checkinstall.izto.org/)
 
 ## Quickstart
 

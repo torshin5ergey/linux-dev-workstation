@@ -16,6 +16,7 @@ var_apt_packages:
   - flameshot # Screenshots
   - vlc
   - obs-studio
+  - checkinstall
 
 # snap common packages
 var_snap_packages:
