@@ -34,3 +34,5 @@
       ansible.builtin.include_tasks: tasks/terraform.yaml
       when: install_terraform | bool
       tags: terraform
+
+# TODO vscode extensions
