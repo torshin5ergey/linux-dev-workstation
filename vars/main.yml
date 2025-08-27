@@ -23,6 +23,8 @@ var_snap_packages:
   - name: yq
   - name: task
     classic: true
+  - name: processing
+    classic: true
 
 install_docker: true # Docker via apt
 install_helm: true # Helm via apt
