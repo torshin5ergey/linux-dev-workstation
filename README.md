@@ -29,6 +29,7 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
 - OBS Studio
 - [CheckInstall](https://checkinstall.izto.org/)
 - Processing
+- gnome-shell-extension-manager
 
 ## Quickstart
 

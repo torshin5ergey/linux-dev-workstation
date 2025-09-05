@@ -17,6 +17,7 @@ var_apt_packages:
   - vlc
   - obs-studio
   - checkinstall
+  - gnome-shell-extension-manager
 
 # snap common packages
 var_snap_packages:
