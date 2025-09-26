@@ -30,6 +30,7 @@ Setup and configure Linux for Dev/DevOps via Ansible playbook
 - [CheckInstall](https://checkinstall.izto.org/)
 - Processing
 - gnome-shell-extension-manager
+- screen
 
 ## Quickstart
 
